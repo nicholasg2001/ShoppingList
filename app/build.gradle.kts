@@ -1,3 +1,12 @@
+import java.io.FileInputStream
+import java.util.Properties
+
+val localPropertiesFile: File = rootProject.file("local.properties")
+val localProperties = Properties()
+localProperties.load(FileInputStream(localPropertiesFile))
+
+
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -7,6 +16,8 @@ android {
     namespace = "com.example.shoppinglist"
     compileSdk = 34
 
+    val apiKey: String = localProperties["API_KEY"] as String
+
     defaultConfig {
         applicationId = "com.example.shoppinglist"
         minSdk = 24
@@ -14,9 +25,15 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        buildConfigField("String", "API_KEY", apiKey)
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+
+        buildFeatures{
+            buildConfig = true
         }
     }
 
