@@ -1,1 +1,2 @@
-Practice Kotlin app. A shopping list that displays item and you can edit/delete items in the list.
+Kotlin shopping list app that allows users to add/remove/update shopping list items. 
+Users can also add a location of where to find the item via Google Maps API
